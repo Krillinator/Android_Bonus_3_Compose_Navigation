@@ -18,8 +18,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.krillinator.bonus_3_compose_navigation.ui.theme.Bonus_3_Compose_NavigationTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 
 class MainActivity : ComponentActivity() {
+
+    /* TODO - Compose Destinations
+    *   --> PDF --> Compose Destinations
+    *   --> Gradle setup --> Latest versions
+    *   --> SKIP old version
+    * */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,64 +38,50 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyApp()
+                    Home()
                 }
             }
         }
     }
 }
 
+@RootNavGraph(start = true)
+@Destination
 @Composable
-fun MyApp() {
-    val navController = rememberNavController()
-
-    // TODO - NavGraph + Multiple Destinations
-
-    NavHost(navController = navController, startDestination = "signUpPage") {
-        composable("themePage") { ThemePage(navController) }
-        composable("signUpPage") { SignUpPage(navController) }
-        composable("aboutPage") { AboutPage(navController) }
-        composable(
-            "loginPage/{username}/{password}",
-            arguments = listOf(
-                navArgument("username") {type = NavType.StringType},
-                navArgument("password") {type = NavType.StringType}
-            )) { navBackStackEntry ->
-            val username = navBackStackEntry.arguments?.getString("username")
-            val password = navBackStackEntry.arguments?.getString("password")
-            LoginPage(navController = navController, username = username, password = password)
-        }
-    }
-    
+fun Home() {
+    Text(text = "HOME")
 }
 
+@Destination
 @Composable
-fun SignUpPage(navController: NavController) {
+fun SignUpPage(username: String, password: String) {
 
     // Sending Data to --> LoginPage
-    val user = User("Benny", "123")
+    val user = User(username, password)
 
     Column {
         Text(text = "SignUpPage")
-        Button(onClick = { navController.navigate("loginPage/${user.name}/${user.password}") }) {
+        Button(onClick = { }) {
             Text(text = "Navigate -> loginPage ")
         }
     }
 }
 
+@Destination
 @Composable
-fun LoginPage(navController: NavController, username: String?, password: String?) {
+fun LoginPage() {
 
     Column {
         Text(text = "LoginPage")
-        Text(text = "User data: $username, $password")
-        Button(onClick = { navController.navigate("signInPage") }) {
+        Text(text = "User data: ")
+        Button(onClick = { }) {
 
         }
     }
     
 }
 
+@Destination
 @Composable
 fun ThemePage(navController: NavController) {
     Column {
@@ -98,6 +92,7 @@ fun ThemePage(navController: NavController) {
     }
 }
 
+@Destination
 @Composable
 fun AboutPage(navController: NavController) {
     Column {
