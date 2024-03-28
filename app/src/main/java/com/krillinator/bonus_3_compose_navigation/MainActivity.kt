@@ -17,9 +17,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.krillinator.bonus_3_compose_navigation.destinations.SignUpPageDestination
 import com.krillinator.bonus_3_compose_navigation.ui.theme.Bonus_3_Compose_NavigationTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 class MainActivity : ComponentActivity() {
 
@@ -38,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Home()
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }
@@ -48,8 +51,20 @@ class MainActivity : ComponentActivity() {
 @RootNavGraph(start = true)
 @Destination
 @Composable
-fun Home() {
+fun Home(navigator: DestinationsNavigator) {
+    Column {
     Text(text = "HOME")
+        Button(onClick = {
+            navigator.navigate(
+                SignUpPageDestination(
+                    username = "",
+                    password = ""
+                )
+            )
+        }) {
+            Text(text = "Navigate")
+        }
+    }
 }
 
 @Destination
