@@ -55,11 +55,11 @@ android {
 
 dependencies {
 
-    // https://mvnrepository.com/artifact/io.github.raamcosta.compose-destinations/cor
-
+    // https://mvnrepository.com/artifact/io.github.raamcosta.compose-destinations/core
     implementation("io.github.raamcosta.compose-destinations:core:1.10.2")
     ksp("io.github.raamcosta.compose-destinations:ksp:1.10.2")
 
+    // Animations
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")

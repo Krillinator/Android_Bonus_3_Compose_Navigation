@@ -23,7 +23,9 @@ import com.krillinator.bonus_3_compose_navigation.ui.theme.Bonus_3_Compose_Navig
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DependenciesContainerBuilder
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.spec.DestinationStyle
 
 class MainActivity : ComponentActivity() {
 
@@ -42,7 +44,16 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DestinationsNavHost(navGraph = NavGraphs.root)
+
+                     //DestinationsNavHost(navGraph = NavGraphs.root)
+
+                            DestinationsNavHost(
+                                navGraph = NavGraphs.root,
+                            )
+
+
+
+
                 }
             }
         }
@@ -50,7 +61,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @RootNavGraph(start = true)
-@Destination
+@Destination(style = ProfileTransitions::class)
 @Composable
 fun Home(navigator: DestinationsNavigator) {
     Column {
@@ -68,7 +79,7 @@ fun Home(navigator: DestinationsNavigator) {
     }
 }
 
-@Destination
+@Destination(style = ProfileTransitions::class)
 @Composable
 fun SignUpPage(username: String, password: String) {
 
@@ -84,7 +95,7 @@ fun SignUpPage(username: String, password: String) {
     }
 }
 
-@Destination
+@Destination(style = ProfileTransitions::class)
 @Composable
 fun LoginPage() {
 
@@ -98,7 +109,7 @@ fun LoginPage() {
     
 }
 
-@Destination
+@Destination(style = ProfileTransitions::class)
 @Composable
 fun ThemePage(navController: NavController) {
     Column {
