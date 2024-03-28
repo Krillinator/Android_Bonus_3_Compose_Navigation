@@ -3,6 +3,7 @@ package com.krillinator.bonus_3_compose_navigation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.animate
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
@@ -57,8 +58,8 @@ fun Home(navigator: DestinationsNavigator) {
         Button(onClick = {
             navigator.navigate(
                 SignUpPageDestination(
-                    username = "",
-                    password = ""
+                    username = "Benny",
+                    password = "123"
                 )
             )
         }) {
@@ -76,6 +77,7 @@ fun SignUpPage(username: String, password: String) {
 
     Column {
         Text(text = "SignUpPage")
+        Text(text = "$user")
         Button(onClick = { }) {
             Text(text = "Navigate -> loginPage ")
         }
