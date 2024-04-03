@@ -30,8 +30,8 @@ object ProfileTransitions: DestinationStyle.Animated {
 
     override fun AnimatedContentTransitionScope<NavBackStackEntry>.popExitTransition(): ExitTransition? {
         return slideOutHorizontally(
-            targetOffsetX = { 1000 },
-            animationSpec = tween(700)
+            targetOffsetX = { 1200 },
+            animationSpec = tween(500)
         )
     }
 }
